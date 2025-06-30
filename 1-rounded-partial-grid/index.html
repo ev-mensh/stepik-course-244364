@@ -16,6 +16,27 @@
         line-height: 4rem;
         font-size: 1.5rem;
       }
+      div:first-child {
+        border-top-left-radius: 1rem;
+      }
+      div:last-child {
+        border-bottom-right-radius: 1rem;
+      }
+      div:nth-child(4n+1):nth-last-child(-n+4) {
+        border-bottom-left-radius: 1rem;
+      }
+      div:nth-child(4n):nth-child(-n+4):nth-last-child(-n+4) {
+        border-top-right-radius: 1rem;
+      }
+      div:nth-child(4n):nth-last-child(-n+4) {
+        border-bottom-right-radius: 1rem;
+      }
+      div:nth-child(-n+4):nth-child(4n) {
+        border-top-right-radius: 1rem;
+      }
+      div:nth-child(-n+4):last-child {
+        border-top-right-radius: 1rem;
+      }
     }
   </style>
   </head>
@@ -32,7 +53,15 @@
       <div>9</div>
       <div>10</div>
       <div>11</div>
-<!--      <div>12</div>-->
+      <div>12</div>
+      <div>13</div>
+      <div>14</div>
+      <div>15</div>
+      <div>16</div>
+      <div>17</div>
+      <div>18</div>
+      <div>19</div>
+      <!-- <div>20</div> -->
     </div>
   </body>
 </html>
