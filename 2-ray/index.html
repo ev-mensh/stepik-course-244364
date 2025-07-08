@@ -8,7 +8,74 @@
         --sky-400: oklch(74.6% 0.16 232.661);
         --sky-600: oklch(58.8% 0.158 241.966);
       }
+
+      body {
+        padding: 0;
+        margin: 0;
+      }
+
+      .root {
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--sky-600);
+
+        .noise {
+          position: absolute;
+          inset: 0;
+          background-image: url("noise.svg");
+          opacity: 0.3;
+        }
+
+        .ray {
+          position: absolute;
+          inset: -3rem 0 0 0;
+          filter: blur(1.5rem);
+
+          &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(
+              to bottom,
+              var(--sky-300) 0%,
+              transparent 70%,
+              transparent 100%
+            );
+            clip-path: polygon(40% -10%, 60% -10%, 90% 100%, 10% 100%);
+          }
+        }
+
+        .ray-noise {
+          position: absolute;
+          inset: -3rem 0 0 0;
+          background-image: url("noise.svg");
+          opacity: 0.4;
+          clip-path: polygon(40% -10%, 60% -10%, 90% 100%, 10% 100%);
+          z-index: 1;
+        }
+
+        .logo {
+          position: absolute;
+          top: 70%;
+          width: 100%;
+          text-align: center;
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          font-size: 5rem;
+          text-transform: uppercase;
+          background: -webkit-linear-gradient(white, var(--sky-400));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          z-index: 0;
+        }
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <div class="root">
+      <div class="noise"></div>
+      <div class="ray"></div>
+      <div class="ray-noise"></div>
+      <div class="logo">Paqmind</div>
+    </div>
+  </body>
 </html>
