@@ -61,6 +61,16 @@ a {
   position: relative;
 }
 .subnav {
+  position: sticky;
+  top: 0;
+  padding: 2rem 0;
+  background-image: linear-gradient(
+    to bottom,
+    white 0%,
+    white 90%,
+    transparent 100%
+  );
+
   nav {
     display: flex;
     cursor: pointer;
