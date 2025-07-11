@@ -1,10 +1,17 @@
-let navHeight = 107;
-
 document.addEventListener("DOMContentLoaded", () => {
-  let navLinks = document.querySelectorAll("nav a");
+  initSectionScrolling("section2");
+});
+
+function initSectionScrolling(sectionId) {
+  let section = document.getElementById(sectionId);
+  if (!section) return;
+
+  let subnav = section.querySelector(".subnav");
+  let subnavHeight = subnav.getBoundingClientRect().height;
+  let navLinks = subnav.querySelectorAll("a");
   let pairs = [];
   navLinks.forEach((link) => {
-    let subsection = document.querySelector(
+    let subsection = section.querySelector(
       `.subsection${link.getAttribute("href")}`
     );
     if (subsection) {
@@ -16,15 +23,20 @@ document.addEventListener("DOMContentLoaded", () => {
     link.addEventListener("click", (evt) => {
       evt.preventDefault();
 
-      subsection.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.scrollTo({
+        top:
+          window.scrollY + subsection.getBoundingClientRect().y - subnavHeight,
+        behavior: "smooth",
+      });
     });
   });
 
   window.addEventListener("scroll", () => {
     pairs.forEach(([link, subsection]) => {
       let rect = subsection.getBoundingClientRect();
-      let isActive = rect.y <= navHeight && rect.y + rect.height > navHeight;
+      let isActive =
+        rect.y <= subnavHeight && rect.y + rect.height > subnavHeight;
       link.classList.toggle("active", isActive);
     });
   });
-});
+}
