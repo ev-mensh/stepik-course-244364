@@ -31,12 +31,24 @@ function initSectionScrolling(sectionId) {
     });
   });
 
-  window.addEventListener("scroll", () => {
+  let navClassToggle = () => {
     pairs.forEach(([link, subsection]) => {
       let rect = subsection.getBoundingClientRect();
       let isActive =
         rect.y <= subnavHeight && rect.y + rect.height > subnavHeight;
       link.classList.toggle("active", isActive);
     });
-  });
+  };
+
+  window.addEventListener("scroll", throttle(navClassToggle, 200));
+}
+
+function throttle(fn, delay) {
+  var time = Date.now();
+  return function () {
+    if (time + delay - Date.now() < 0) {
+      fn();
+      time = Date.now();
+    }
+  };
 }
