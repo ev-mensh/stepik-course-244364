@@ -8,6 +8,7 @@ html,
 body {
   font-size: 16px;
   color: var(--slate-950);
+  scroll-behavior: smooth;
 }
 * {
   box-sizing: border-box;
@@ -47,6 +48,7 @@ a {
 }
 .subsection {
   padding: 1rem 0;
+  scroll-margin-top: 107px;
   &:first-child {
     padding-top: 0;
   }
