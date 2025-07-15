@@ -10,6 +10,7 @@ function initNav(nav) {
   let sections = links.map((link) =>
     document.querySelector(link.getAttribute("href"))
   );
+  let active = [];
 
   // scroll to the relevant section when clicking on the link in the navigation
   links.forEach((link, index) => {
@@ -28,4 +29,27 @@ function initNav(nav) {
 
   // highlight an active navigation link
   // >>>>>> START HERE <<<<<<
+
+  let observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        let id = entry.target.getAttribute("id");
+        let index = active.findIndex((item) => item[0] === id);
+        active[index] = [id, entry.isIntersecting];
+      });
+      links.forEach((link) => link.classList.remove("active"));
+      let activeIndex = active.findIndex(([id, value]) => value);
+      links[activeIndex].classList.add("active");
+    },
+    {
+      root: null,
+      rootMargin: `-${nav.getBoundingClientRect().height}px 0px 0px 0px`,
+      threshold: 0,
+    }
+  );
+
+  sections.forEach((section) => {
+    observer.observe(section);
+    active.push([section.getAttribute("id"), false]);
+  });
 }
