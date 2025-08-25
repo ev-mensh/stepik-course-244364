@@ -11,6 +11,8 @@ function initNav(nav) {
     document.querySelector(link.getAttribute("href"))
   );
   let active = [];
+  let navHeight = nav.getBoundingClientRect().height;
+  let screenHeight = document.documentElement.clientHeight;
 
   // scroll to the relevant section when clicking on the link in the navigation
   links.forEach((link, index) => {
@@ -18,7 +20,6 @@ function initNav(nav) {
       event.preventDefault();
 
       let sectionY = sections[index].getBoundingClientRect().y;
-      let navHeight = nav.getBoundingClientRect().height;
 
       window.scrollTo({
         behavior: "smooth",
@@ -43,7 +44,7 @@ function initNav(nav) {
     },
     {
       root: null,
-      rootMargin: `-${nav.getBoundingClientRect().height}px 0px 0px 0px`,
+      rootMargin: `-${navHeight}px 0px -${screenHeight - navHeight - 1}px 0px`,
       threshold: 0,
     }
   );
